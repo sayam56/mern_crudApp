@@ -4,6 +4,8 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import env from 'dotenv'
 import bodyParser from 'body-parser'
+import Students from './models/students.js'
+
 const app = express()
 
 
