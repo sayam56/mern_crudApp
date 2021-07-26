@@ -37,13 +37,13 @@ app.use(express.urlencoded({
 
 // create routes
 app.get("/", (req, res) => {
-     console.log('get request');
-     res.send('get req sent');
+     Students.find()
+     .exec((err, result) => {
+          if (err) return res.status(400).json({err});
+          if (result) return res.status(200).json({result});
+     })
 });
 app.post("/students", (req, res) => {
-     console.log(req.body.firstName);
-     console.log(req.body.lastName);
-     console.log(req.body.place);
      const student = new Students ({
           _id : new mongoose.Types.ObjectId,
           firstName : req.body.firstName,
@@ -55,6 +55,28 @@ app.post("/students", (req, res) => {
           if (stud) return res.status(200).json({stud});
      });
      res.send('ok');
+});
+app.delete('/students/:id', (req,res) => {
+     const id = req.params.id;
+     Students.remove({_id:id}, (err,result) => {
+          if (err) return res.status(400).json({err});
+          if (result) return res.status(200).json({result});
+     })
+});
+app.put('/students/:id', (req, res) =>{
+     const id = req.params.id;
+     const firstName = req.body.firstName;
+     const lastName = req.body.lastName;
+     const place = req.body.place;
+
+     Students.findByIdAndUpdate({_id:id}, {
+          firstName: firstName,
+          lastName : lastName,
+          place : place
+     }, (err, result) => {
+          if (err) return res.status(400).json({err});
+          if (result) return res.status(200).json({result});
+     })
 });
 
 // server
