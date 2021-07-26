@@ -40,6 +40,22 @@ app.get("/", (req, res) => {
      console.log('get request');
      res.send('get req sent');
 });
+app.post("/students", (req, res) => {
+     console.log(req.body.firstName);
+     console.log(req.body.lastName);
+     console.log(req.body.place);
+     const student = new Students ({
+          _id : new mongoose.Types.ObjectId,
+          firstName : req.body.firstName,
+          lastName : req.body.lastName,
+          place : req.body.place
+     });
+     student.save((err, stud) => {
+          if (err) return res.status(400).json({err});
+          if (stud) return res.status(200).json({stud});
+     });
+     res.send('ok');
+});
 
 // server
 app.listen(process.env.PORT, () => {
