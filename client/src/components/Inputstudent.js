@@ -18,6 +18,7 @@ class Inputstudent extends React.Component{
                //   .post("/")
                //   .then(res => )
                //   .catch(err => console.error(err));
+               // saving private ryan - this is to connect the react app to the node app
           }
      }
      render(){
