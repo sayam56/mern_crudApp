@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import batman from "../res/batman.png"
 
 class Inputstudent extends React.Component{
      state = {
@@ -14,11 +15,12 @@ class Inputstudent extends React.Component{
      }
      handleSubmit = () => {
           if (this.state.firstName !== '' && this.state.lastName !== '' && this.state.place !== '') {
-               // axios
-               //   .post("/")
-               //   .then(res => )
-               //   .catch(err => console.error(err));
-               // saving private ryan - this is to connect the react app to the node app
+               axios
+                 .post("http://localhost:2000/students", this.state)
+                 .then(res => {
+                      console.log('successfully posted');
+                 })
+                 .catch(err => console.error(err));
           }
      }
      render(){
@@ -32,8 +34,8 @@ class Inputstudent extends React.Component{
                               <button style={{marginLeft: '50px',marginTop: '20px',width: '430px', backgroundColor:'#4D10BE', color: 'white', fontSize: '18px', fontFamily: 'cursive, sans-serif, gugi', outline: 'none', borderRadius: '10px'}} className="btn">CREATE</button>
                          </form>
                     </div>
-                    <div>
-
+                    <div className="col-md-8">
+                         <img style={{height: '500px'}} src={batman} alt='black-batman'/>
                     </div>
                </div>
           );
