@@ -7,7 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to top left, black, rgb(95, 94, 94));
   background-repeat: no-repeat;
-  height: auto;
+  min-height: 100vh;
+  height: 100%;
   width: 100%;
   overflow-x: hidden;
 }
